@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>eShop</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+      <h1>Интернет магазин</h1>
+      <main>
+<h2>Каталог товаров</h2>
+<input type="text" v-model="query" name="query" placeholder="Поиск"/><button>Поиск</button>
+<div class="catalog">{{handleSearch}}</div>
+        <div v-for="item in filteredItems" class="item">
+            <h3>{{item.title}}</h3>
+            <p>{{item.price}}</p>
+            <button class="Buy" @click="handleBuyClick(item)">Купить</button>
+        </div>
+    <h2>Корзина</h2> 
+    <button v-on:click="visible=!visible">{{visible?'Скрыть':'Отобразить'}}</button>
+    <div class="cart" v-show="visible">
+       
+    <ul>
+        <li v-for="item in cart">
+            
+            <h3>{{item.title}}</h3>
+            <input class="qty" type="number" v-model="item.qty"/>
+            <button @click="handleDeleteClick(item.id)">x</button>
+        </li>
+    </ul>
+</div>
+<div class="total">{{total}}</div>
+      </main>
+    </div>
+    <script src="vuuscript.js"></script>
+</body>
+</html>
